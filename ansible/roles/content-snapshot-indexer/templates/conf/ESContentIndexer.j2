@@ -16,6 +16,7 @@ redis.es.database.index="{{ redis.content.index}}"
 # to which Redis database (0 - 15) data should be indexed?
 
 elasticsearch.host="{{ elastic_search.host }}"
+elasticsearch.vdn.host="{{ elastic_search.vdn_host }}"
 elasticsearch.port="{{ elastic_search.port }}"
 elasticsearch.scroll.size="{{ elastic_search.scroll_size }}"
 elasticsearch.index.source.keys=["{{ redis.content.source_key }}"] # this will be used as key for redis

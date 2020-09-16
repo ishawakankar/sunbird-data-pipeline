@@ -29,6 +29,7 @@ redis:
 
 elastic_search:
   host: "{{ lp_composite_search_host }}" # compositesearch index
+  vdn_host: "{{ lp_composite_search_host }}"
   port: "9200"
   content:
     index: "compositesearch"
@@ -73,6 +74,7 @@ job_config:
   cassandra_redis_path: "{{ content_snapshot_path }}/config/cassandraRedis.conf"
 
 output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchData"
+output_vdn_file_path: "{{ content_snapshot_path }}/compositeSearchBatchDataVDN"
 config_files: ["application","cassandraRedis","DeviceProfile","ESCloudUploader","ESContentIndexer","DialcodeRedisIndexer"]
 script_files: ["DeviceProfileScripts","DruidContentIndexer","RedisContentIndexer","RedisDialcodeIndexer","RedisUserDataIndexer","run-script"]
 

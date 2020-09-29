@@ -15,7 +15,7 @@ case "$1" in
       echo "Invoked DruidContentIndexer"
      nohup {{ content_snapshot_path }}/scripts/DruidContentIndexer.sh &
    ;;
-   "DRUID_VDN_CONTENT_INDEXER"
+   "DRUID_VDN_CONTENT_INDEXER")
      echo "Invoked DruidVDNContentIndexer"
      nohup {{ content_snapshot_path }}/scripts/DruidVDNContentIndexer.sh &
    ;;

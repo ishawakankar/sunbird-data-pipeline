@@ -45,9 +45,10 @@ elastic_search:
 cloud_storage:
   container: "telemetry-data-store" # Container is different in all env so override this.
   object_key: "druid-content-snapshot/snapshot.txt"
+  vdn_object_key: "druid-content-snapshot/vdn-snapshot.txt"
   provider: "azure"
-  account_name: "{{dp_azure_account_name}}"
-  account_key: "{{dp_vault_azure_account_key}}"
+  account_name: "{{sunbird_druid_storage_account_name}}"
+  account_key: "{{sunbird_druid_storage_account_key}}"
 
 cassandra:
   host: "{{groups['lp-cassandra'][0]}}" ## LMS-Cassandra IP Address.
@@ -61,16 +62,20 @@ cassandra:
 druid:
   coordinator_host: "{{groups['raw-coordinator'][0]}}" 
   data_source: "content-model-snapshot"
+  vdn_data_source: "vdn-content-model-snapshot"
   ingestion_spec_path: "{{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/content_index_batch.json"
+  vdn_ingestion_spec_path: "{{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/vdn_content_index_batch.json"
 
 job_config:
   es_cloud_uploader_path: "{{ content_snapshot_path }}/config/ESCloudUploader.conf"
+  es_cloud_uploader_vdn_path: "{{ content_snapshot_path }}/config/ESCloudUploaderVDN.conf"
   es_content_indexer_path: "{{ content_snapshot_path }}/config/ESContentIndexer.conf"
   es_dialCode_indexer_path: "{{ content_snapshot_path }}/config/DialcodeRedisIndexer.conf"
   device_profile_path: "{{ content_snapshot_path }}/config/DeviceProfile.conf"
   cassandra_redis_path: "{{ content_snapshot_path }}/config/cassandraRedis.conf"
 
 output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchData"
+output_vdn_file_path: "{{ content_snapshot_path }}/compositeSearchBatchDataVDN"
 config_files: ["application","cassandraRedis","DeviceProfile","ESCloudUploader","ESContentIndexer","DialcodeRedisIndexer"]
 script_files: ["DeviceProfileScripts","DruidContentIndexer","RedisContentIndexer","RedisDialcodeIndexer","RedisUserDataIndexer","run-script"]
 

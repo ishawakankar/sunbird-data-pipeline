@@ -48,7 +48,7 @@ cloud_storage:
   provider: "azure"
   account_name: "{{sunbird_druid_storage_account_name}}"
   account_key: "{{sunbird_druid_storage_account_key}}"
-  - set_fact:
+  set_fact:
       object_key: "druid-content-snapshot/vdn-snapshot.txt"
     tag: dock
 
@@ -65,7 +65,7 @@ druid:
   coordinator_host: "{{groups['raw-coordinator'][0]}}" 
   data_source: "content-model-snapshot"
   ingestion_spec_path: "{{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/content_index_batch.json"
-  - set_fact:
+  set_fact:
       data_source: "vdn-content-model-snapshot"
       ingestion_spec_path: {{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/vdn_content_index_batch.json
     tag: dock

@@ -45,9 +45,10 @@ elastic_search:
 cloud_storage:
   container: "telemetry-data-store" # Container is different in all env so override this.
   object_key: "druid-content-snapshot/snapshot.txt"
+  vdn_object_key: "druid-content-snapshot/vdn-snapshot.txt"
   provider: "azure"
-  account_name: "{{dp_azure_account_name}}"
-  account_key: "{{dp_vault_azure_account_key}}"
+  account_name: "{{sunbird_druid_storage_account_name}}"
+  account_key: "{{sunbird_druid_storage_account_key}}"
 
 cassandra:
   host: "{{groups['lp-cassandra'][0]}}" ## LMS-Cassandra IP Address.
@@ -71,6 +72,7 @@ job_config:
   cassandra_redis_path: "{{ content_snapshot_path }}/config/cassandraRedis.conf"
 
 output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchData"
+vdn_output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchDataVDN"
 config_files: ["application","cassandraRedis","DeviceProfile","ESCloudUploader","ESContentIndexer","DialcodeRedisIndexer"]
 script_files: ["DeviceProfileScripts","DruidContentIndexer","RedisContentIndexer","RedisDialcodeIndexer","RedisUserDataIndexer","run-script"]
 

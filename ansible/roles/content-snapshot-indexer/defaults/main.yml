@@ -74,11 +74,12 @@ output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchData"
 config_files: ["application","cassandraRedis","DeviceProfile","ESCloudUploader","ESContentIndexer","DialcodeRedisIndexer"]
 script_files: ["DeviceProfileScripts","DruidContentIndexer","RedisContentIndexer","RedisDialcodeIndexer","RedisUserDataIndexer","run-script"]
 
-- set_fact:
-  druid.data_source: "vdn-content-model-snapshot"
-  druid.ingestion_spec_path: {{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/vdn_content_index_batch.json
-  output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchDataVDN"
-  cloud_storage.object_key: "druid-content-snapshot/vdn-snapshot.txt"
+- name: Setting host facts for vdn
+  set_fact:
+    druid.data_source: "vdn-content-model-snapshot"
+    druid.ingestion_spec_path: {{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/vdn_content_index_batch.json
+    output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchDataVDN"
+    cloud_storage.object_key: "druid-content-snapshot/vdn-snapshot.txt"
   tag: dock
 
 

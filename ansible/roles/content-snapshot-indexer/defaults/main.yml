@@ -46,8 +46,8 @@ cloud_storage:
   container: "telemetry-data-store" # Container is different in all env so override this.
   object_key: "druid-content-snapshot/snapshot.txt"
   provider: "azure"
-  account_name: "{{dp_azure_account_name}}"
-  account_key: "{{dp_vault_azure_account_key}}"
+  account_name: "{{sunbird_druid_storage_account_name}}"
+  account_key: "{{sunbird_druid_storage_account_key}}"
 
 cassandra:
   host: "{{groups['lp-cassandra'][0]}}" ## LMS-Cassandra IP Address.
@@ -75,10 +75,10 @@ config_files: ["application","cassandraRedis","DeviceProfile","ESCloudUploader",
 script_files: ["DeviceProfileScripts","DruidContentIndexer","RedisContentIndexer","RedisDialcodeIndexer","RedisUserDataIndexer","run-script"]
 
 - set_fact:
-  data_source: "vdn-content-model-snapshot"
-  ingestion_spec_path: {{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/vdn_content_index_batch.json
+  druid.data_source: "vdn-content-model-snapshot"
+  druid.ingestion_spec_path: {{ content_snapshot_jar_path }}/etl-jobs-1.0/druid_models/vdn_content_index_batch.json
   output_file_path: "{{ content_snapshot_path }}/compositeSearchBatchDataVDN"
-  object_key: "druid-content-snapshot/vdn-snapshot.txt"
+  cloud_storage.object_key: "druid-content-snapshot/vdn-snapshot.txt"
   tag: dock
 
 

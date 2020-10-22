@@ -46,7 +46,6 @@ if [ ! -z "$1" ]; then job_config=$(config $1); else job_config="$2"; fi
 
 if [ ! -z "$2" ]; then batchIds=";$2"; else batchIds=""; fi
 
-
 echo "Starting the job - $1" >> "$DP_LOGS/$today-job-execution.log"
 
 echo "Job modelName - $job_id" >> "$DP_LOGS/$today-job-execution.log"

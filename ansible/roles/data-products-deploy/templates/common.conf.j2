@@ -1,6 +1,10 @@
 application.env="{{ env }}"
 telemetry.version="2.1"
 default.parallelization="10"
+
+kafka.brokerList="{{groups['processing-cluster-kafka']|join(':9092,')}}:9092"
+topic="{{ env }}.mvc.processor.job.request"
+
 spark_output_temp_dir="/mount/data/analytics/tmp/"
 lp.url="{{lp_url}}"
 service.search.url="{{ service.search.url }}"
